@@ -4,7 +4,7 @@ import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 
 class Articles extends Component {
   // Setting our component's initial state
@@ -14,13 +14,13 @@ class Articles extends Component {
     start_year: "",
     end_year: ""  };
 
-  // When the component mounts, load all books and save them to this.state.books
+  // When the component mounts, load all articles and save them to this.state.books
   componentDidMount() {
     this.loadArticles();
   }
 
-  // Loads all books  and sets them to this.state.books
-  loadBooks = () => {
+  // Loads all articles  and sets them to this.state.articles
+  loadArticles = () => {
     API.getArticles()
       .then(res =>
         this.setState({ Articles: res.data, topic: "", start_year: "", end_year: "" })
@@ -28,7 +28,7 @@ class Articles extends Component {
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
+  // Deletes a article from the database with a given id, then reloads articles from the db
   deleteArticle = id => {
     API.deleteArticle(id)
       .then(res => this.loadArticles())
@@ -43,8 +43,8 @@ class Articles extends Component {
     });
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveArticle method to save the book data
+  // Then reload articles from the database
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.topic && this.state.start_year && this.state.end_year) {
@@ -86,10 +86,10 @@ class Articles extends Component {
                 placeholder="end_year (required)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.start_year && this.state.end_year && this.state.topic)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Search
               </FormBtn>
             </form>
           </Col>
@@ -99,7 +99,7 @@ class Articles extends Component {
             </Jumbotron>
             {this.state.articles.length ? (
               <List>
-                {this.state.articles.map(book => {
+                {this.state.articles.map(article => {
                   return (
                     <ListItem key={article._id}>
                       <a href={"/articles/" + article._id}>

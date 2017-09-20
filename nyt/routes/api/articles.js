@@ -8,11 +8,11 @@ router.get("/articles", (req, res) => {
     .then(({ data: { results } }) => res.json(results))
     .catch(err => res.status(422).json(err));
 });
-// Matches with "/api/books"
+// Matches with "/api/articles"
 router.route("/")
     .post(articlesController.create);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/articles/:id"
 router
   .route("/:id")
   .get(articlesController.findById)
