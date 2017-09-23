@@ -4,12 +4,13 @@ import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, FormBtn } from "../../components/Form";
+import Input from "../../components/Form/Input";
+import FormBtn from "../../components/Form/FormBtn";
 
 class Articles extends Component {
   // Setting our component's initial state
   state = {
-    Articles: [],
+    articles: [],
     topic: "",
     start_year: "",
     end_year: ""  };
@@ -23,7 +24,7 @@ class Articles extends Component {
   loadArticles = () => {
     API.getArticles()
       .then(res =>
-        this.setState({ Articles: res.data, topic: "", start_year: "", end_year: "" })
+        this.setState({ articles: res.data, topic: "", start_year: "", end_year: "" })
       )
       .catch(err => console.log(err));
   };
@@ -62,10 +63,10 @@ class Articles extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
               <h1>New York Times Article Scrubber</h1>
-            </Jumbotron>
+
             <form>
               <Input
                 value={this.state.topic}
@@ -92,8 +93,9 @@ class Articles extends Component {
                 Search
               </FormBtn>
             </form>
+            </Jumbotron>
           </Col>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
               <h1>Saved Articles</h1>
             </Jumbotron>
