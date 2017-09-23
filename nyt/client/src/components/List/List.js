@@ -1,7 +1,7 @@
 import React from "react";
 import "./List.css";
 
-export const List = ({ children }) => {
+const List = ({ children }) => {
   return (
     <div className="list-overflow-container">
       <ul className="list-group">
@@ -10,3 +10,5 @@ export const List = ({ children }) => {
     </div>
   );
 };
+
+export default List;

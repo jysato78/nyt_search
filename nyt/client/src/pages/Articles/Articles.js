@@ -3,7 +3,8 @@ import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import List from "../../components/List/List";
+import ListItem from "../../components/List/ListItem";
 import Input from "../../components/Form/Input";
 import FormBtn from "../../components/Form/FormBtn";
 
